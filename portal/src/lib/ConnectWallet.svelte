@@ -3,7 +3,6 @@
  export let web3Props = { provider: null, signer: null, account: null, chainId: null };
  // connect the wallet
  async function connectWallet() {
-     console.log("hello")
      let provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
      await provider.send('eth_requestAccounts', []);
      const signer = provider.getSigner();
@@ -13,7 +12,6 @@
  }
 
  export async function checkWallet() {
-     console.log("checking wallet...")
      let provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
      const signer = provider.getSigner();
      const account = await signer.getAddress();
@@ -23,8 +21,8 @@
 </script>
 
 {#if !web3Props.account}
-    <button on:click={connectWallet}>Connect Wallet</button>
+    <button on:click={connectWallet}>Enter</button>
 {:else}
-    Connected to {web3Props.account}
+    {web3Props.account} entered the vortex and the dream became reality...
 {/if}
 
