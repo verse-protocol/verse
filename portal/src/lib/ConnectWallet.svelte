@@ -14,16 +14,16 @@
 		const signer = provider.getSigner();
 		const account = await signer.getAddress();
 		const chainId = await signer.getChainId();
-		const ensName = account && await provider.lookupAddress(account);
+		const ensName = account && (await provider.lookupAddress(account));
 		web3Props = { signer, provider, chainId, account, ensName };
 	}
 
 	export async function checkWallet() {
 		let provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
 		const signer = provider.getSigner();
-		const account = await signer.getAddress().catch(_ => null);
+		const account = await signer.getAddress().catch((_) => null);
 		const chainId = await signer.getChainId();
-		const ensName = account && await provider.lookupAddress(account);
+		const ensName = account && (await provider.lookupAddress(account));
 		web3Props = { signer, provider, chainId, account, ensName };
 	}
 </script>
